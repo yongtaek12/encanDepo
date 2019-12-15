@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}Encan Depot{% endblock %}
+
+{% block content %}
+    {# main page #}
+    {# TODO: split into smaller templates later #}
+    <div class="container py-4">
+
+        {# top banner #}
+        <div style="text-align: center; padding-bottom: 10px;">
+            <div class="my-4">
+                <img src="{% static 'img/main_banner.jpg' %}"
+                     alt="Main promotion banner"
+                     class="img-fluid rounded shadow-sm"
+                     style="width: 100%; object-fit: cover; object-position: top;">
+            </div>
+        </div>
+
+        {# section title #}
+        <div class="text-center mb-4">
+            <h3 style="color: #333; border-bottom: 2px solid #ddd; padding-bottom: 10px;">
+                Best Deals Today
+            </h3>
+            {# <p>Today only!</p> #}
+        </div>
+
+        {# product grid #}
+        {# 4 columns on desktop, 1 on mobile #}
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+
+            {% for product in products %}
+            {# product card start #}
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0" style="overflow: hidden;">
+                    {# product image #}
+                    <img src="{% static product.image_path %}"
+                         class="card-img-top"
+                         alt="{{ product.name }}"
+                         style="height: 180px; object-fit: cover;">
+
+                    <div class="card-body text-start">
+                        {# product name #}
+                        <h5 class="card-title text-dark">{{ product.name }}</h5>
+
+                        {# price section #}
+                        <p class="card-text">
+                            <strong class="text-danger" style="font-size: 1.2rem;">{{ product.price }}$</strong>
+                            {% if product.original_price %}
+                                <s class="text-muted small">{{ product.original_price }}$</s>
+                            {% endif %}
+                            {# TODO: show discount % here #}
+                        </p>
+
+                        {# specs list #}
+                        <ul class="list-unstyled small text-success" style="line-height: 1.8;">
+                            <li><i class="fas fa-check-circle me-2"></i> {{ product.spec_cpu }}</li>
+                            <li><i class="fas fa-check-circle me-2"></i> {{ product.spec_ram }}</li>
+                            <li><i class="fas fa-check-circle me-2"></i> {{ product.spec_ssd }}</li>
+                            <li><i class="fas fa-check-circle me-2"></i> {{ product.spec_screen }}</li>
+                        </ul>
+
+                        {# warranty #}
+                        <p class="small text-muted mb-3">
+                            <i class="fas fa-shield-alt me-1"></i> {{ product.warranty }}
+                        </p>
+                    </div>
+
+                    {# add to cart button #}
+                    <div class="card-footer bg-white border-0">
+                        <a href="javascript:void(0);" class="btn btn-success w-100">
+                            <i class="fab fa-whatsapp me-2"></i> Ajouter au panier
+                        </a>
+                        {# TODO: hook this up to real cart action #}
+                    </div>
+                </div>
+            </div>
+            {# product card end #}
+            {% empty %}
+            <div class="col-12 text-center text-muted py-5">
+                <p>No products available yet.</p>
+            </div>
+            {% endfor %}
+
+        </div>
+        {# end product grid #}
+
+
+        {# ============================= #}
+        {# Visit Our Store section #}
+        {# added 2019-12-01 #}
+        {# ============================= #}
+        <section class="mt-5 pt-5">
+            <div class="text-center mb-4">
+                <h3 style="color: #333; border-bottom: 2px solid #ddd; padding-bottom: 10px;">
+                    Visit Our Store
+                </h3>
+                <p class="text-muted small mt-2 mb-0">
+                    Venez nous voir en personne — Méga Centre de Liquidation Informatique
+                </p>
+            </div>
+
+            {# store photo grid 2x2 #}
+            {# TODO: maybe make these clickable (lightbox) later #}
+            <div class="row g-3 mb-4">
+                <div class="col-6">
+                    <img src="{% static 'img/9.jpg' %}" alt="Encan Dépôt - entrepôt"
+                         class="img-fluid rounded shadow-sm w-100"
+                         style="height: 240px; object-fit: cover;">
+                </div>
+                <div class="col-6">
+                    <img src="{% static 'img/10.jpg' %}" alt="Encan Dépôt - section ordinateurs"
+                         class="img-fluid rounded shadow-sm w-100"
+                         style="height: 240px; object-fit: cover;">
+                </div>
+                <div class="col-6">
+                    <img src="{% static 'img/11.jpg' %}" alt="Encan Dépôt - section portables"
+                         class="img-fluid rounded shadow-sm w-100"
+                         style="height: 240px; object-fit: cover;">
+                </div>
+                <div class="col-6">
+                    <img src="{% static 'img/12.jpg' %}" alt="Encan Dépôt - intérieur magasin"
+                         class="img-fluid rounded shadow-sm w-100"
+                         style="height: 240px; object-fit: cover;">
+                </div>
+            </div>
+
+            {# store info box #}
+            <div class="text-center p-4 rounded" style="background-color: #f8f9fa;">
+                <h5 class="mb-3" style="color: #333;">
+                    <i class="fas fa-map-marker-alt text-danger me-2"></i>
+                    Encan Dépôt
+                </h5>
+                <p class="mb-1">
+                    <strong>1150 Rue Bégin</strong>, Ville St-Laurent, Qc., H4R 1X1
+                </p>
+                <p class="mb-1">
+                    <i class="fas fa-phone me-1"></i> Tél : <strong>514-331-5353</strong>
+                    &nbsp;|&nbsp;
+                    <i class="fas fa-phone me-1"></i> <strong>514-574-3389</strong>
+                </p>
+                <p class="mb-0 text-muted small">
+                    <i class="fas fa-clock me-1"></i>
+                    Lundi - Vendredi : 10h00 - 16h30 &nbsp;|&nbsp; Samedi : 10h00 - 14h00 &nbsp;|&nbsp; Dimanche : Fermé
+                </p>
+                {# <p>email: Admin@encandepot.com</p> #}
+            </div>
+        </section>
+
+        {# end of page #}
+    </div>
+{% endblock %}
