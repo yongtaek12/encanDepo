@@ -4,18 +4,18 @@ Simple Django web shop for Encan Dépôt — a used computer liquidation store i
 
 Shows products on the homepage (laptops, desktops, external HDDs, GPUs) with their specs, prices, and store info.
 
-> Hobby project / practice site. Not a real e-commerce yet (no cart logic, no checkout).
-
 ## Screenshot
 
-> TODO: add screenshot
+![Homepage top](depo/static/img/screenshot_top.png)
+
+![Store section](depo/static/img/screenshot_bottom.png)
 
 ## Stack
 
 - Python 3.7
 - Django 2.2
 - MariaDB 10.x
-- Bootstrap 5
+- Bootstrap
 - Font Awesome
 
 ## Project structure
@@ -86,25 +86,3 @@ Or create a new one:
 ```bash
 python manage.py createsuperuser
 ```
-
-## Store info
-
-**Encan Dépôt** — Méga Centre de Liquidation Informatique
-
-- 1150 Rue Bégin, Ville St-Laurent, QC, H4R 1X1
-- Tel: 514-331-5353 / 514-574-3389
-- Hours: Mon–Fri 10h–16h30, Sat 10h–14h, Sun closed
-
-## TODO
-
-- [ ] Cart functionality
-- [ ] Product detail page
-- [ ] Search / filter
-- [ ] Product category field
-- [ ] Move secret key to env variable
-- [ ] Login page
-- [ ] Order history
-
-## Notes
-
-DB password and Django secret are hardcoded in `depo/settings.py`. This is a learning project; should be moved to environment variables before any real deployment.
